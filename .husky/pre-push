@@ -1,1 +1,1 @@
-yarn prepush ${1}
+yarn prepush
