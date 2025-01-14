@@ -10,6 +10,7 @@ describe('Delete Post Service', () => {
     inMemoryPostsRepository.posts = [
       {
         id: '1',
+        authorId: '1',
         title: 'First post',
         content: 'This is the first post',
         createdAt: new Date(),

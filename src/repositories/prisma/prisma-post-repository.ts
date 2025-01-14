@@ -38,6 +38,14 @@ export class PrismaPostsRepository implements IPostsRepository {
     })
   }
 
+  async getByAuthorId(authorId: string): Promise<IPost[] | null> {
+    return await db.post.findMany({
+      where: {
+        authorId,
+      },
+    })
+  }
+
   async update(data: IUpdatePostData): Promise<void> {
     await db.post.update({
       where: {

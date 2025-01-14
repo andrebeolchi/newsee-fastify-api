@@ -10,6 +10,7 @@ describe('Get All Posts', () => {
     inMemoryPostsRepository.posts = [
       {
         id: '1',
+        authorId: '1',
         title: 'First post',
         content: 'This is the first post',
         createdAt: new Date(),
@@ -17,6 +18,7 @@ describe('Get All Posts', () => {
       },
       {
         id: '2',
+        authorId: '1',
         title: 'Second post',
         content: 'This is the second post',
         createdAt: new Date(),

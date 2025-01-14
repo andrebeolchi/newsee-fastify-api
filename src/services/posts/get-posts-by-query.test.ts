@@ -4,10 +4,12 @@ import { GetPostsByQueryService } from './get-posts-by-query'
 
 describe('Get Post by query', () => {
   const inMemoryPostsRepository = new InMemoryPostsRepository()
+
   beforeEach(() => {
     inMemoryPostsRepository.posts = [
       {
         id: '1',
+        authorId: '1',
         title: 'First post',
         content: 'content one',
         createdAt: new Date(),
@@ -15,6 +17,7 @@ describe('Get Post by query', () => {
       },
       {
         id: '2',
+        authorId: '1',
         title: 'Second post',
         content: 'content two',
         createdAt: new Date(),
@@ -22,6 +25,7 @@ describe('Get Post by query', () => {
       },
       {
         id: '3',
+        authorId: '1',
         title: 'Third post',
         content: 'content three',
         createdAt: new Date(),

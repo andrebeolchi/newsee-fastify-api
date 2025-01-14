@@ -21,6 +21,8 @@ export interface IPostsRepository {
 
   getByQuery(query: string): Promise<IPost[] | null>
 
+  getByAuthorId(authorId: string): Promise<IPost[] | null>
+
   update(data: IUpdatePostData): Promise<void>
 
   delete(id: string): Promise<void>

@@ -31,6 +31,10 @@ export class InMemoryPostsRepository implements IPostsRepository {
     return this.posts.filter(post => includes(post.title, query) || includes(post.content, query))
   }
 
+  async getByAuthorId(authorId: string): Promise<IPost[]> {
+    return this.posts.filter(post => post.authorId === authorId)
+  }
+
   async update(data: IUpdatePostData): Promise<void> {
     this.posts = this.posts.map(post => {
       if (post.id === data.id) {
