@@ -3,8 +3,8 @@ import { IUser } from '~/models/user-interface'
 import { ICreateUserData, IUpdateUserData, IUserRepository } from '~/repositories/user-repository'
 
 export class PrismaUserRepository implements IUserRepository {
-  async create(data: ICreateUserData) {
-    await db.user.create({ data })
+  async create(data: ICreateUserData): Promise<IUser> {
+    return await db.user.create({ data, omit: { password: true } })
   }
 
   async getById(id: string): Promise<IUser | null> {
@@ -13,13 +13,14 @@ export class PrismaUserRepository implements IUserRepository {
     })
   }
 
-  async update(data: IUpdateUserData): Promise<void> {
-    await db.user.update({
+  async update(data: IUpdateUserData): Promise<IUser> {
+    return await db.user.update({
       where: { id: data.id },
       data: {
         ...(data.username && { username: data.username }),
         ...(data.email && { email: data.email }),
       },
+      omit: { password: true },
     })
   }
 

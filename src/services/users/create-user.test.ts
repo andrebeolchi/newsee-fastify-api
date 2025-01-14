@@ -6,12 +6,11 @@ describe('Create User Service', () => {
     const inMemoryUsersRepository = new InMemoryUserRepository()
     const createUserService = new CreateUserService(inMemoryUsersRepository)
 
-    expect(
-      createUserService.execute({
-        email: 'john@doe.com',
-        username: 'john_doe',
-      })
-    )
+    const user = await createUserService.execute({
+      email: 'john@doe.com',
+      username: 'john_doe',
+      password: '123456',
+    })
 
     expect(inMemoryUsersRepository.users).toHaveLength(1)
     expect(inMemoryUsersRepository.users).toEqual(
@@ -22,5 +21,12 @@ describe('Create User Service', () => {
         }),
       ])
     )
+    expect(user).toEqual(
+      expect.objectContaining({
+        email: 'john@doe.com',
+        username: 'john_doe',
+      })
+    )
+    expect(user).not.toHaveProperty('password')
   })
 })

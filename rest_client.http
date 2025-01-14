@@ -1,5 +1,5 @@
 @BASE_URL=http://localhost:3000
-@USER_ID=4363278f-88b6-4275-8074-aadaece13e83
+@USER_ID=920214be-ea67-47c0-88d5-d21f2db7d2d9
 @POST_ID=77b26a71-4812-44ac-888f-460f218fdb22
 
 
@@ -10,7 +10,8 @@ Content-Type: application/json
 
 {
     "email": "jane@doe.com",
-    "username": "jane_doe"
+    "username": "jane_doe",
+    "password": "password"
 }
 
 ### 2. Get all posts (without authentication)

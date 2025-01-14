@@ -18,7 +18,13 @@ export const schema = {
     email: z.string(),
   }),
   response: {
-    200: z.string(),
+    200: z.object({
+      id: z.string(),
+      username: z.string(),
+      email: z.string(),
+      createdAt: z.date(),
+      updatedAt: z.date(),
+    }),
   },
 }
 
