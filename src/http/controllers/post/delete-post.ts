@@ -1,8 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
-import { PrismaPostsRepository } from '~/repositories/prisma/prisma-posts-repository'
-import { DeletePostService } from '~/services/posts/delete-post'
+import { makeDeletePostService } from '~/services/factory/make-delete-post-service'
 
 export const schema = {
   summary: 'Delete Post',
@@ -25,8 +24,7 @@ export const schema = {
 export async function deletePost(req: FastifyRequest, reply: FastifyReply) {
   const { id } = req.params as z.infer<typeof schema.params>
 
-  const prismaPostRepository = new PrismaPostsRepository()
-  const deletePostService = new DeletePostService(prismaPostRepository)
+  const deletePostService = makeDeletePostService()
 
   await deletePostService.execute(id)
 

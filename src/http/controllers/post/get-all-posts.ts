@@ -1,7 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { PrismaPostsRepository } from '~/repositories/prisma/prisma-posts-repository'
-import { GetAllPostsService } from '~/services/posts/get-all-posts'
+import { makeGetAllPostsService } from '~/services/factory/make-get-all-posts-service'
 
 export const schema = {
   summary: 'Get All Posts',
@@ -21,8 +20,7 @@ export const schema = {
 }
 
 export async function getAllPosts(req: FastifyRequest, reply: FastifyReply) {
-  const prismaPostRepository = new PrismaPostsRepository()
-  const getAllPostsService = new GetAllPostsService(prismaPostRepository)
+  const getAllPostsService = makeGetAllPostsService()
 
   const posts = await getAllPostsService.execute()
 

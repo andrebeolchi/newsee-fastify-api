@@ -1,7 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { PrismaPostsRepository } from '~/repositories/prisma/prisma-posts-repository'
-import { CreatePostService } from '~/services/posts/create-post'
+import { makeCreatePostService } from '~/services/factory/make-create-post-service'
 
 export const schema = {
   summary: 'Create Post',
@@ -19,8 +18,7 @@ export const schema = {
 export async function createPost(req: FastifyRequest, reply: FastifyReply) {
   const { title, content } = req.body as z.infer<typeof schema.body>
 
-  const postRepository = new PrismaPostsRepository()
-  const createPostService = new CreatePostService(postRepository)
+  const createPostService = makeCreatePostService()
 
   await createPostService.execute({ title, content })
 

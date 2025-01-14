@@ -1,7 +1,6 @@
-import { PrismaPostsRepository } from '~/repositories/prisma/prisma-posts-repository'
-import { GetPostsByQueryService } from '~/services/posts/get-posts-by-query'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
+import { makeGetPostByQueryService } from '~/services/factory/make-get-post-by-query-service'
 
 export const schema = {
   summary: 'Get Posts By Query',
@@ -26,8 +25,7 @@ export const schema = {
 export async function getPostsByQuery(req: FastifyRequest, reply: FastifyReply) {
   const { query } = req.query as z.infer<typeof schema.query>
 
-  const prismaPostRepository = new PrismaPostsRepository()
-  const getPostsByQueryService = new GetPostsByQueryService(prismaPostRepository)
+  const getPostsByQueryService = makeGetPostByQueryService()
 
   const post = await getPostsByQueryService.execute(query)
 
