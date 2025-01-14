@@ -1,33 +1,52 @@
 @BASE_URL=http://localhost:3000
+@USER_ID=4363278f-88b6-4275-8074-aadaece13e83
 @POST_ID=77b26a71-4812-44ac-888f-460f218fdb22
 
 
-### 1. Get all posts
+### 1. Create a new user
+
+POST {{BASE_URL}}/users
+Content-Type: application/json
+
+{
+    "email": "jane@doe.com",
+    "username": "jane_doe"
+}
+
+### 2. Get all posts (without authentication)
 
 GET {{BASE_URL}}/posts
 Content-Type: application/json
 
-### 2. Create a new post
+### 3. Get all posts
+
+GET {{BASE_URL}}/posts
+Content-Type: application/json
+Authorization: {{USER_ID}}
+
+
+### 4. Create a new post
 
 POST {{BASE_URL}}/posts
 Content-Type: application/json
 
 {
-    "title": "Post 1",
-    "content": "Content 1"
+    "authorId": "{{USER_ID}}",
+    "title": "Post 3",
+    "content": "Content 3"
 }
 
-### 3. Get a post by id
+### 5. Get a post by id
 
 GET {{BASE_URL}}/posts/{{POST_ID}}
 Content-Type: application/json
 
-### 4. Get posts by query
+### 6. Get posts by query
 
 GET {{BASE_URL}}/posts/search
 Content-Type: application/json
 
-### 5. Update a post
+### 7. Update a post
 
 PUT {{BASE_URL}}/posts/{{POST_ID}}
 Content-Type: application/json
@@ -37,7 +56,7 @@ Content-Type: application/json
     "content": "Content 1 Updated"
 }
 
-### 6. Delete a post
+### 8. Delete a post
 
 DELETE {{BASE_URL}}/posts/{{POST_ID}}
 Content-Type: application/json

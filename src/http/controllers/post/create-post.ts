@@ -7,6 +7,7 @@ export const schema = {
   description: 'Create a new post',
   tags: ['posts'],
   body: z.object({
+    authorId: z.string(),
     title: z.string(),
     content: z.string(),
   }),
@@ -16,11 +17,11 @@ export const schema = {
 }
 
 export async function createPost(req: FastifyRequest, reply: FastifyReply) {
-  const { title, content } = req.body as z.infer<typeof schema.body>
+  const { authorId, title, content } = req.body as z.infer<typeof schema.body>
 
   const createPostService = makeCreatePostService()
 
-  await createPostService.execute({ title, content })
+  await createPostService.execute({ authorId, title, content })
 
   return reply.code(201).send()
 }
