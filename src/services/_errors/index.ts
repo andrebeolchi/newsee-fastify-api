@@ -20,6 +20,12 @@ export class MissingParametersError extends Error {
   }
 }
 
+export class UnauthorizedError extends Error {
+  constructor() {
+    super('Unauthorized')
+  }
+}
+
 interface ErrorHandlerMap {
   [key: string]: (error: Error, request: FastifyRequest, reply: FastifyReply) => void
 }
@@ -34,6 +40,11 @@ export const errorHandlerMap: ErrorHandlerMap = {
   ResourceNotFoundError: (_, __, reply) => {
     return reply.status(404).send({
       message: 'Resource not found',
+    })
+  },
+  UnauthorizedError: (_, __, reply) => {
+    return reply.status(401).send({
+      message: 'Unauthorized',
     })
   },
 }
