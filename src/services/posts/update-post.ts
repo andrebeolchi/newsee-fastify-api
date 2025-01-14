@@ -1,4 +1,4 @@
-import { IPostsRepository } from '~/repositories/posts-repository'
+import { IPostsRepository } from '~/repositories/post-repository'
 
 interface UpdatePostRequest {
   id: string

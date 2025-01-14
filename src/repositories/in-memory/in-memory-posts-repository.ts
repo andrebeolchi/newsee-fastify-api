@@ -1,14 +1,14 @@
 import { randomUUID } from 'crypto'
-import { Post } from '~/entities/post-entity'
+import { IPost } from '~/entities/models/post-inteface'
 
-import { ICreatePostData, IPostsRepository, IUpdatePostData } from '~/repositories/posts-repository'
+import { ICreatePostData, IPostsRepository, IUpdatePostData } from '~/repositories/post-repository'
 
 function includes(source: string, searchString: string): boolean {
   return source.toLowerCase().includes(searchString.toLowerCase())
 }
 
 export class InMemoryPostsRepository implements IPostsRepository {
-  public posts: Post[] = []
+  public posts: IPost[] = []
 
   async create(data: ICreatePostData): Promise<void> {
     this.posts.push({
@@ -19,15 +19,15 @@ export class InMemoryPostsRepository implements IPostsRepository {
     })
   }
 
-  async getAll(): Promise<Post[]> {
+  async getAll(): Promise<IPost[]> {
     return this.posts
   }
 
-  async getById(id: string): Promise<Post | null> {
+  async getById(id: string): Promise<IPost | null> {
     return this.posts.find(post => post.id === id) || null
   }
 
-  async getByQuery(query: string): Promise<Post[]> {
+  async getByQuery(query: string): Promise<IPost[]> {
     return this.posts.filter(post => includes(post.title, query) || includes(post.content, query))
   }
 

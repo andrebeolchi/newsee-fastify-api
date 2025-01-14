@@ -1,4 +1,4 @@
-import { Post } from '~/entities/post-entity'
+import { IPost } from '~/entities/models/post-inteface'
 
 export interface ICreatePostData {
   title: string
@@ -14,11 +14,11 @@ export interface IUpdatePostData {
 export interface IPostsRepository {
   create(data: ICreatePostData): Promise<void>
 
-  getAll(): Promise<Post[]>
+  getAll(): Promise<IPost[]>
 
-  getById(id: string): Promise<Post | null>
+  getById(id: string): Promise<IPost | null>
 
-  getByQuery(query: string): Promise<Post[] | null>
+  getByQuery(query: string): Promise<IPost[] | null>
 
   update(data: IUpdatePostData): Promise<void>
 

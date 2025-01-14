@@ -1,4 +1,4 @@
-import { PrismaPostsRepository } from '~/repositories/prisma/prisma-posts-repository'
+import { PrismaPostsRepository } from '~/repositories/prisma/prisma-post-repository'
 import { CreatePostService } from '../posts/create-post'
 
 export function makeCreatePostService() {

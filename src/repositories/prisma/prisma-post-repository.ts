@@ -1,23 +1,23 @@
 import { db } from '~/adapters/db'
-import { Post } from '~/entities/post-entity'
-import { ICreatePostData, IPostsRepository, IUpdatePostData } from '~/repositories/posts-repository'
+import { IPost } from '~/entities/models/post-inteface'
+import { ICreatePostData, IPostsRepository, IUpdatePostData } from '~/repositories/post-repository'
 
 export class PrismaPostsRepository implements IPostsRepository {
   async create(data: ICreatePostData): Promise<void> {
     await db.post.create({ data })
   }
 
-  async getAll(): Promise<Post[]> {
+  async getAll(): Promise<IPost[]> {
     return await db.post.findMany()
   }
 
-  async getById(id: string): Promise<Post | null> {
+  async getById(id: string): Promise<IPost | null> {
     return await db.post.findUnique({
       where: { id },
     })
   }
 
-  async getByQuery(query: string): Promise<Post[] | null> {
+  async getByQuery(query: string): Promise<IPost[] | null> {
     return await db.post.findMany({
       where: {
         OR: [

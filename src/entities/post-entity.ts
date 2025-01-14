@@ -1,4 +1,6 @@
-export class Post {
+import { IPost } from './models/post-inteface'
+
+export class Post implements IPost {
   id?: string
   title: string
   content: string

@@ -1,4 +1,4 @@
-import { PrismaPostsRepository } from '~/repositories/prisma/prisma-posts-repository'
+import { PrismaPostsRepository } from '~/repositories/prisma/prisma-post-repository'
 import { GetAllPostsService } from '~/services/posts/get-all-posts'
 
 export function makeGetAllPostsService() {
