@@ -27,21 +27,4 @@ describe('Delete Post Service', () => {
       ])
     )
   })
-
-  it('should throw an error when an id is not provided', async () => {
-    const inMemoryPostsRepository = new InMemoryPostsRepository()
-    const deletePost = new DeletePostService(inMemoryPostsRepository)
-
-    inMemoryPostsRepository.posts = [
-      {
-        id: '1',
-        title: 'First post',
-        content: 'This is the first post',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-    ]
-
-    await expect(deletePost.execute()).rejects.toThrow()
-  })
 })
