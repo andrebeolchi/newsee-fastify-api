@@ -6,9 +6,10 @@ import fastify from 'fastify'
 import { jsonSchemaTransform, serializerCompiler, validatorCompiler, ZodTypeProvider } from 'fastify-type-provider-zod'
 
 import { postRoutes } from '~/http/controllers/post/routes'
+import { userRoutes } from '~/http/controllers/user/routes'
+import { statusRoutes } from '~/http/controllers/status/routes'
 
 import { globalErrorHandler } from '~/services/_errors'
-import { userRoutes } from './http/controllers/user/routes'
 
 export const app = fastify()
 
@@ -42,3 +43,4 @@ app.setErrorHandler(globalErrorHandler)
 
 app.register(postRoutes)
 app.register(userRoutes)
+app.register(statusRoutes)

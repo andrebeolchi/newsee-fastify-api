@@ -1,9 +1,1 @@
-- `app.ts` - Contains the main application setup
-- `server.ts` - The file that exposes the server
-
-
-## Libraries used
-
-- `fastify`
-- `zod` - For schema validation
-- `dotenv` - For environment variables
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/andrebeolchi/newsee-fastify-api/test.yml?style=flat&label=hourly%20tests)
