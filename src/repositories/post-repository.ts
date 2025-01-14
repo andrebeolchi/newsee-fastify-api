@@ -1,6 +1,7 @@
-import { IPost } from '~/entities/models/post-inteface'
+import { IPost } from '~/models/post-inteface'
 
 export interface ICreatePostData {
+  authorId: string
   title: string
   content: string
 }

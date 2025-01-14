@@ -1,4 +1,4 @@
-import { IPost } from '~/entities/models/post-inteface'
+import { IPost } from '~/models/post-inteface'
 import { IPostsRepository } from '~/repositories/post-repository'
 
 export class GetPostsByQueryService {

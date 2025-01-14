@@ -1,6 +1,6 @@
 import { ResourceNotFoundError } from '~/services/_errors'
 import { IPostsRepository } from '~/repositories/post-repository'
-import { IPost } from '~/entities/models/post-inteface'
+import { IPost } from '~/models/post-inteface'
 
 export class GetPostByIdService {
   constructor(private postsRepository: IPostsRepository) {}

@@ -1,4 +1,4 @@
-import { IPost } from '~/entities/models/post-inteface'
+import { IPost } from '~/models/post-inteface'
 import { PrismaPostsRepository } from '~/repositories/prisma/prisma-post-repository'
 
 export class GetAllPostsService {

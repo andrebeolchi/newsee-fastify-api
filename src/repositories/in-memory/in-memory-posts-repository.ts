@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto'
-import { IPost } from '~/entities/models/post-inteface'
+import { IPost } from '~/models/post-inteface'
 
 import { ICreatePostData, IPostsRepository, IUpdatePostData } from '~/repositories/post-repository'
 
