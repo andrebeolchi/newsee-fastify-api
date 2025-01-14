@@ -8,6 +8,7 @@ import { jsonSchemaTransform, serializerCompiler, validatorCompiler, ZodTypeProv
 import { postRoutes } from '~/http/controllers/post/routes'
 
 import { globalErrorHandler } from '~/services/_errors'
+import { userRoutes } from './http/controllers/user/routes'
 
 export const app = fastify()
 
@@ -40,3 +41,4 @@ app.withTypeProvider<ZodTypeProvider>()
 app.setErrorHandler(globalErrorHandler)
 
 app.register(postRoutes)
+app.register(userRoutes)
