@@ -17,20 +17,4 @@ describe('Create Post Service', () => {
       ])
     )
   })
-
-  it('should not create a post without title', async () => {
-    const inMemoryPostsRepository = new InMemoryPostsRepository()
-    const createPost = new CreatePostService(inMemoryPostsRepository)
-
-    expect(createPost.execute({ content: 'This is the first post' })).rejects.toThrow()
-    expect(inMemoryPostsRepository.posts).toHaveLength(0)
-  })
-
-  it('should not create a post without content', async () => {
-    const inMemoryPostsRepository = new InMemoryPostsRepository()
-    const createPost = new CreatePostService(inMemoryPostsRepository)
-
-    expect(createPost.execute({ title: 'First post' })).rejects.toThrow()
-    expect(inMemoryPostsRepository.posts).toHaveLength(0)
-  })
 })

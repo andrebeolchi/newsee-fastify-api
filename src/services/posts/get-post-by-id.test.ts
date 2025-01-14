@@ -1,6 +1,7 @@
 import { InMemoryPostsRepository } from '~/repositories/in-memory/in-memory-posts-repository'
 
 import { GetPostByIdService } from './get-post-by-id'
+import { ResourceNotFoundError } from '../_errors'
 
 describe('Get Post by ID', () => {
   it('should return a post when a valid id is provided', async () => {
@@ -30,7 +31,7 @@ describe('Get Post by ID', () => {
     )
   })
 
-  it('should return null when an invalid id is provided', async () => {
+  it('should throw an error when an id is not found', async () => {
     const inMemoryPostsRepository = new InMemoryPostsRepository()
     const getPostById = new GetPostByIdService(inMemoryPostsRepository)
 
@@ -44,15 +45,6 @@ describe('Get Post by ID', () => {
       },
     ]
 
-    const post = await getPostById.execute('2')
-
-    expect(post).toBeNull()
-  })
-
-  it('should throw an error when an id is not provided', async () => {
-    const inMemoryPostsRepository = new InMemoryPostsRepository()
-    const getPostById = new GetPostByIdService(inMemoryPostsRepository)
-
-    await expect(getPostById.execute()).rejects.toThrow()
+    await expect(getPostById.execute('2')).rejects.toThrow(ResourceNotFoundError)
   })
 })

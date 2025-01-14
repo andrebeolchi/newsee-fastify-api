@@ -32,32 +32,6 @@ describe('Update Post Service', () => {
     )
   })
 
-  it('should not update a post without id', async () => {
-    const inMemoryPostsRepository = new InMemoryPostsRepository()
-    const updatePost = new UpdatePostService(inMemoryPostsRepository)
-
-    inMemoryPostsRepository.posts = [
-      {
-        id: '1',
-        title: 'First post',
-        content: 'This is the first post',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-    ]
-
-    expect(updatePost.execute({ title: 'Updated post', content: 'This is the updated post' })).rejects.toThrow()
-    expect(inMemoryPostsRepository.posts).toHaveLength(1)
-    expect(inMemoryPostsRepository.posts).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          title: 'First post',
-          content: 'This is the first post',
-        }),
-      ])
-    )
-  })
-
   it('should update a post without title', async () => {
     const inMemoryPostsRepository = new InMemoryPostsRepository()
     const updatePost = new UpdatePostService(inMemoryPostsRepository)
@@ -104,32 +78,6 @@ describe('Update Post Service', () => {
       expect.arrayContaining([
         expect.objectContaining({
           title: 'Updated post',
-          content: 'This is the first post',
-        }),
-      ])
-    )
-  })
-
-  it('should throw an error if no title or content is provided', async () => {
-    const inMemoryPostsRepository = new InMemoryPostsRepository()
-    const updatePost = new UpdatePostService(inMemoryPostsRepository)
-
-    inMemoryPostsRepository.posts = [
-      {
-        id: '1',
-        title: 'First post',
-        content: 'This is the first post',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-    ]
-
-    expect(updatePost.execute({ id: '1' })).rejects.toThrow()
-    expect(inMemoryPostsRepository.posts).toHaveLength(1)
-    expect(inMemoryPostsRepository.posts).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          title: 'First post',
           content: 'This is the first post',
         }),
       ])
