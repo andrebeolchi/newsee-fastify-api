@@ -1,18 +1,15 @@
 import { Post } from '~/entities/post-entity'
-import { OperationFailedError } from '~/errors'
+import { ResourceNotFoundError } from '~/services/_errors'
 import { IPostsRepository } from '~/repositories/posts-repository'
 
 export class GetPostByIdService {
   constructor(private postsRepository: IPostsRepository) {}
 
-  async execute(id: string): Promise<Post | null> {
-    if (!id) throw new Error('ID is required')
+  async execute(id: string): Promise<Post | undefined> {
+    const post = await this.postsRepository.getById(id)
 
-    try {
-      const post = await this.postsRepository.getById(id)
-      return post
-    } catch {
-      throw new OperationFailedError('Failed to get post')
-    }
+    if (!post) throw new ResourceNotFoundError()
+
+    return post
   }
 }

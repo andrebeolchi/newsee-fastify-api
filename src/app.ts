@@ -4,7 +4,10 @@ import fastifySwagger from '@fastify/swagger'
 import fastifySwaggerUi from '@fastify/swagger-ui'
 import fastify from 'fastify'
 import { jsonSchemaTransform, serializerCompiler, validatorCompiler, ZodTypeProvider } from 'fastify-type-provider-zod'
-import { postRoutes } from './http/controllers/post/routes'
+
+import { postRoutes } from '~/http/controllers/post/routes'
+
+import { globalErrorHandler } from '~/services/_errors'
 
 export const app = fastify()
 
@@ -31,5 +34,9 @@ app.register(fastifySwaggerUi, {
 app.setValidatorCompiler(validatorCompiler)
 app.setSerializerCompiler(serializerCompiler)
 app.withTypeProvider<ZodTypeProvider>()
+
+// Set Error Handler
+
+app.setErrorHandler(globalErrorHandler)
 
 app.register(postRoutes)
