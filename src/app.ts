@@ -37,7 +37,7 @@ app.register(fastifySwagger, {
 
 // Register Swagger UI plugin to serve API documentation
 app.register(fastifySwaggerUi, {
-  routePrefix: '/docs',
+  routePrefix: '/',
 })
 
 // Register Zod Type Provider to validate and serialize payloads
