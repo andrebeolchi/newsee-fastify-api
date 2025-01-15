@@ -8,7 +8,10 @@ export const schema = {
   description: 'Get all posts',
   tags: ['posts'],
   headers: z.object({
-    authorization: z.string().uuid().nullish(),
+    authorization: z
+      .string()
+      .regex(/^Bearer .+$/)
+      .nullish(),
   }),
   response: {
     200: z.array(
@@ -28,9 +31,11 @@ export async function getAllPosts(req: FastifyRequest, reply: FastifyReply) {
   const { authorization } = req.headers as z.infer<typeof schema.headers>
 
   if (authorization) {
+    const user = await req.jwtDecode()
+
     const getPostsByAuthorId = makeGetPostByAuthorIdService()
 
-    const posts = await getPostsByAuthorId.execute(authorization)
+    const posts = await getPostsByAuthorId.execute(user?.id)
 
     return reply.status(200).send(posts)
   }

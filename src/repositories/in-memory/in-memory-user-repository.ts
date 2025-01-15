@@ -22,7 +22,19 @@ export class InMemoryUserRepository implements IUserRepository {
   }
 
   async getById(id: string): Promise<IUser | null> {
-    return this.users.find(user => user.id === id) || null
+    const user = this.users.find(user => user.id === id)
+
+    if (!user) return null
+
+    return omit(['password'], user)
+  }
+
+  async getByUsername(username: string): Promise<IUser | null> {
+    const user = this.users.find(user => user.username === username)
+
+    if (!user) return null
+
+    return omit(['password'], user)
   }
 
   async update(data: IUpdateUserData): Promise<IUser> {

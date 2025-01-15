@@ -7,6 +7,9 @@ export const schema = {
   summary: 'Delete Post',
   description: 'Delete a post using its id',
   tags: ['posts'],
+  headers: z.object({
+    authorization: z.string().regex(/^Bearer .+$/),
+  }),
   params: z.object({
     id: z.string(),
   }),

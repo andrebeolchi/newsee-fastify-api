@@ -1,6 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { UnauthorizedError } from '~/services/_errors'
 
 import { makeDeleteUserService } from '~/services/factory/make-delete-user-service'
 
@@ -9,7 +8,7 @@ export const schema = {
   description: 'Delete a user',
   tags: ['users'],
   headers: z.object({
-    authorization: z.string().uuid(),
+    authorization: z.string().regex(/^Bearer .+$/),
   }),
   params: z.object({
     id: z.string(),
@@ -20,10 +19,7 @@ export const schema = {
 }
 
 export async function deleteUser(req: FastifyRequest, reply: FastifyReply) {
-  const { authorization } = req.headers as z.infer<typeof schema.headers>
   const { id } = req.params as z.infer<typeof schema.params>
-
-  if (authorization !== id) throw new UnauthorizedError()
 
   const deleteUserService = makeDeleteUserService()
 

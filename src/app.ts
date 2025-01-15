@@ -10,8 +10,16 @@ import { userRoutes } from '~/http/controllers/user/routes'
 import { statusRoutes } from '~/http/controllers/status/routes'
 
 import { globalErrorHandler } from '~/services/_errors'
+import fastifyJwt from '@fastify/jwt'
+
+import { env } from '~/env'
 
 export const app = fastify()
+
+app.register(fastifyJwt, {
+  secret: `${env?.JWT_SECRET}`,
+  sign: { expiresIn: '10m' },
+})
 
 // Register Swagger plugin to generate API documentation
 app.register(fastifySwagger, {
@@ -37,10 +45,9 @@ app.setValidatorCompiler(validatorCompiler)
 app.setSerializerCompiler(serializerCompiler)
 app.withTypeProvider<ZodTypeProvider>()
 
-// Set Error Handler
-
-app.setErrorHandler(globalErrorHandler)
-
 app.register(postRoutes)
 app.register(userRoutes)
 app.register(statusRoutes)
+
+// Set Error Handler
+app.setErrorHandler(globalErrorHandler)

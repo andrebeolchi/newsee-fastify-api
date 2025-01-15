@@ -6,6 +6,7 @@ import { getPostById, schema as getPostByIdSchema } from './get-post-by-id'
 import { getPostsByQuery, schema as getPostsByQuerySchema } from './get-posts-by-query'
 import { updatePost, schema as updatePostSchema } from './update-post'
 import { deletePost, schema as deletePostSchema } from './delete-post'
+import { validateJwt } from '~/http/middlewares/jwt-validate'
 
 export async function postRoutes(app: FastifyInstance) {
   // Get all posts
@@ -39,6 +40,7 @@ export async function postRoutes(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
     '/posts',
     {
+      onRequest: [validateJwt],
       schema: createPostSchema,
     },
     createPost
@@ -48,6 +50,7 @@ export async function postRoutes(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().put(
     '/posts/:id',
     {
+      onRequest: [validateJwt],
       schema: updatePostSchema,
     },
     updatePost
@@ -57,6 +60,7 @@ export async function postRoutes(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().delete(
     '/posts/:id',
     {
+      onRequest: [validateJwt],
       schema: deletePostSchema,
     },
     deletePost

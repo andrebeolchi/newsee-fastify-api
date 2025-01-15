@@ -14,19 +14,36 @@ export class UnauthorizedError extends Error {
   }
 }
 
+export class InvalidCredentialsError extends Error {
+  constructor() {
+    super('Username or password is incorrect')
+  }
+}
+
+export class ResourceAlreadyExistsError extends Error {
+  constructor() {
+    super('Resource already exists')
+  }
+}
+
 interface ErrorHandlerMap {
   [key: string]: (error: Error, request: FastifyRequest, reply: FastifyReply) => void
 }
 
 export const errorHandlerMap: ErrorHandlerMap = {
-  ResourceNotFoundError: (_, __, reply) => {
+  ResourceNotFoundError: (error, __, reply) => {
     return reply.status(404).send({
-      message: 'Resource not found',
+      message: error.message,
     })
   },
-  UnauthorizedError: (_, __, reply) => {
-    return reply.status(401).send({
-      message: 'Unauthorized',
+  InvalidCredentialsError: (error, __, reply) => {
+    return reply.status(404).send({
+      message: error.message,
+    })
+  },
+  ResourceAlreadyExistsError: (error, __, reply) => {
+    return reply.status(409).send({
+      message: error.message,
     })
   },
 }

@@ -4,12 +4,18 @@ import { ICreateUserData, IUpdateUserData, IUserRepository } from '~/repositorie
 
 export class PrismaUserRepository implements IUserRepository {
   async create(data: ICreateUserData): Promise<IUser> {
-    return await db.user.create({ data, omit: { password: true } })
+    return await db.user.create({ data })
   }
 
   async getById(id: string): Promise<IUser | null> {
     return await db.user.findUnique({
       where: { id },
+    })
+  }
+
+  async getByUsername(username: string): Promise<IUser | null> {
+    return await db.user.findUnique({
+      where: { username },
     })
   }
 
@@ -20,7 +26,6 @@ export class PrismaUserRepository implements IUserRepository {
         ...(data.username && { username: data.username }),
         ...(data.email && { email: data.email }),
       },
-      omit: { password: true },
     })
   }
 

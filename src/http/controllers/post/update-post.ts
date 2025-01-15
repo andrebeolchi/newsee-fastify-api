@@ -6,6 +6,9 @@ export const schema = {
   summary: 'Update Post',
   description: 'Update a post using its id',
   tags: ['posts'],
+  headers: z.object({
+    authorization: z.string().regex(/^Bearer .+$/),
+  }),
   params: z.object({
     id: z.string().uuid(),
   }),

@@ -17,6 +17,8 @@ export interface IUserRepository {
 
   getById(id: string): Promise<IUser | null>
 
+  getByUsername(username: string): Promise<IUser | null>
+
   update(data: IUpdateUserData): Promise<IUser>
 
   delete(id: string): Promise<void>

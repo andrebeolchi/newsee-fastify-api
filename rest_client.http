@@ -1,16 +1,27 @@
 @BASE_URL=http://localhost:3000
-@USER_ID=920214be-ea67-47c0-88d5-d21f2db7d2d9
-@POST_ID=77b26a71-4812-44ac-888f-460f218fdb22
+@USER_ID=
+@USER_TOKEN=
+@POST_ID=
 
 
-### 1. Create a new user
+### Login
+
+POST {{BASE_URL}}/sign-in
+Content-Type: application/json
+
+{
+    "username": "test_doe",
+    "password": "password"
+}
+
+### Create a new user
 
 POST {{BASE_URL}}/users
 Content-Type: application/json
 
 {
-    "email": "jane@doe.com",
-    "username": "jane_doe",
+    "email": "test@doe.com",
+    "username": "test_doe",
     "password": "password"
 }
 
@@ -23,18 +34,18 @@ Content-Type: application/json
 
 GET {{BASE_URL}}/posts
 Content-Type: application/json
-Authorization: {{USER_ID}}
-
+Authorization: Bearer {{USER_TOKEN}}
 
 ### 4. Create a new post
 
 POST {{BASE_URL}}/posts
 Content-Type: application/json
+Authorization: Bearer {{USER_TOKEN}}
 
 {
     "authorId": "{{USER_ID}}",
-    "title": "Post 3",
-    "content": "Content 3"
+    "title": "Post 1",
+    "content": "Content 1"
 }
 
 ### 5. Get a post by id
@@ -44,13 +55,14 @@ Content-Type: application/json
 
 ### 6. Get posts by query
 
-GET {{BASE_URL}}/posts/search
+GET {{BASE_URL}}/posts/search?query=pos
 Content-Type: application/json
 
 ### 7. Update a post
 
 PUT {{BASE_URL}}/posts/{{POST_ID}}
 Content-Type: application/json
+Authorization: Bearer {{USER_TOKEN}}
 
 {
     "title": "Post 1 Updated",
@@ -61,3 +73,4 @@ Content-Type: application/json
 
 DELETE {{BASE_URL}}/posts/{{POST_ID}}
 Content-Type: application/json
+Authorization: Bearer {{USER_TOKEN}}

@@ -1,6 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { UnauthorizedError } from '~/services/_errors'
 import { makeUpdateUserService } from '~/services/factory/make-update-user-service'
 
 export const schema = {
@@ -8,7 +7,7 @@ export const schema = {
   description: 'Update a user',
   tags: ['users'],
   headers: z.object({
-    authorization: z.string().uuid(),
+    authorization: z.string().regex(/^Bearer .+$/),
   }),
   params: z.object({
     id: z.string(),
@@ -29,11 +28,8 @@ export const schema = {
 }
 
 export async function updateUser(req: FastifyRequest, reply: FastifyReply) {
-  const { authorization } = req.headers as z.infer<typeof schema.headers>
   const { id } = req.params as z.infer<typeof schema.params>
   const { username, email } = req.body as z.infer<typeof schema.body>
-
-  if (authorization !== id) throw new UnauthorizedError()
 
   const updateUserService = makeUpdateUserService()
 
