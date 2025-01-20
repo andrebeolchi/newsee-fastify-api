@@ -31,21 +31,19 @@ interface ErrorHandlerMap {
 }
 
 export const errorHandlerMap: ErrorHandlerMap = {
-  ResourceNotFoundError: (error, __, reply) => {
-    return reply.status(404).send({
+  ResourceNotFoundError: (error, __, reply) =>
+    reply.status(404).send({
       message: error.message,
-    })
-  },
-  InvalidCredentialsError: (error, __, reply) => {
-    return reply.status(404).send({
+    }),
+
+  InvalidCredentialsError: (error, __, reply) =>
+    reply.status(401).send({
       message: error.message,
-    })
-  },
-  ResourceAlreadyExistsError: (error, __, reply) => {
-    return reply.status(409).send({
+    }),
+  ResourceAlreadyExistsError: (error, __, reply) =>
+    reply.status(409).send({
       message: error.message,
-    })
-  },
+    }),
 }
 
 export const globalErrorHandler = (error: Error, req: FastifyRequest, reply: FastifyReply) => {
