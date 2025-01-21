@@ -3,7 +3,7 @@
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/andrebeolchi/newsee-fastify-api/test.yml?style=flat&label=hourly%20tests)
 [![Better Stack Badge](https://uptime.betterstack.com/status-badges/v2/monitor/1q8no.svg)](https://uptime.betterstack.com/?utm_source=status_badge)
 
-A API Newsee Blog Fiap permite que professores possam compartilhar conteúdo didático e informativo com seus alunos.
+A API Newsee Blog permite que professores possam compartilhar conteúdo didático e informativo com seus alunos.
 Este manual oferece uma visão geral de como usar os endpoints disponíveis, incluindo detalhes
 de autenticação, exemplos de requisições e respostas, e tratamento de erros.
 
@@ -50,29 +50,10 @@ O fluxo de dados ocorre da seguinte forma:
 1. É feita uma requisição á API
 2. Middlewares são usados para fazer a validação de autenticação
 3. Os controladores fazem a associação da rota e método da requisição ao respectivo serviço
-4. Os serviçõs realizam ações e alterações necessárias ao repositório
+4. Os serviços realizam ações e alterações necessárias ao repositório
 5. O repositório armazena a informação e persiste em um banco postgresql
 
 ## Estrutura
-
-`/src`
-<br/>├ `/adapters`
-<br/>│└ `/db`
-<br/>├ `/models`
-<br/>├ `/env`
-<br/>├ `/repositories`
-<br/>│├ `/in-memory`
-<br/>│└ `/prisma`
-<br/>├ `/services`
-<br/>│├ `/_errors`
-<br/>│├ `/factory`
-<br/>│├ `/posts`
-<br/>│└ `/users`
-<br/>├ `/http`
-<br/>│├ `/controllers`
-<br/>│└ `/middlewares`
-<br/>├ `/app.ts`
-<br/>└ `/server.ts`
 
 ### /adapters
 
