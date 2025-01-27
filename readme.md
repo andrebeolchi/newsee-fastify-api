@@ -106,7 +106,7 @@ yarn
 ### Inicialização do banco
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 <small>Argumento "-d" usado para rodar o container em background</small>
