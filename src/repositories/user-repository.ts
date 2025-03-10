@@ -2,12 +2,14 @@ import { IUser } from '~/models/user-interface'
 
 export interface ICreateUserData {
   username: string
+  fullName: string
   email: string
   password: string
 }
 
 export interface IUpdateUserData {
   id: string
+  fullName?: string
   username?: string
   email?: string
 }

@@ -2,6 +2,7 @@ import { IUserRepository } from '~/repositories/user-repository'
 
 interface IUpdateUserRequest {
   username?: string
+  fullName?: string
   email?: string
 }
 
