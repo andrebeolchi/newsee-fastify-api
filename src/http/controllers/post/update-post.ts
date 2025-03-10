@@ -18,9 +18,17 @@ export const schema = {
   }),
   response: {
     200: z.object({
-      id: z.string().uuid(),
+      id: z.string(),
       title: z.string(),
       content: z.string(),
+      author: z.object({
+        id: z.string(),
+        fullName: z.string(),
+        username: z.string(),
+        email: z.string(),
+        createdAt: z.date(),
+        updatedAt: z.date(),
+      }),
       createdAt: z.date(),
       updatedAt: z.date(),
     }),

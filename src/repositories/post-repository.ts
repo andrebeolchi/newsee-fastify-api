@@ -13,7 +13,7 @@ export interface IUpdatePostData {
 }
 
 export interface IPostsRepository {
-  create(data: ICreatePostData): Promise<void>
+  create(data: ICreatePostData): Promise<IPost>
 
   getAll(): Promise<IPost[]>
 
@@ -23,7 +23,7 @@ export interface IPostsRepository {
 
   getByAuthorId(authorId: string): Promise<IPost[] | null>
 
-  update(data: IUpdatePostData): Promise<void>
+  update(data: IUpdatePostData): Promise<IPost>
 
   delete(id: string): Promise<void>
 }

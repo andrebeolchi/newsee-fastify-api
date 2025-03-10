@@ -1,3 +1,4 @@
+import { IPost } from '~/models/post-inteface'
 import { IPostsRepository } from '~/repositories/post-repository'
 
 interface UpdatePostRequest {
@@ -9,7 +10,7 @@ interface UpdatePostRequest {
 export class UpdatePostService {
   constructor(private postsRepository: IPostsRepository) {}
 
-  async execute({ id, title, content }: UpdatePostRequest) {
-    await this.postsRepository.update({ id, title, content })
+  async execute({ id, title, content }: UpdatePostRequest): Promise<IPost> {
+    return this.postsRepository.update({ id, title, content })
   }
 }

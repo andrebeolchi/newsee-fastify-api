@@ -1,3 +1,4 @@
+import { IPost } from '~/models/post-inteface'
 import { IPostsRepository } from '~/repositories/post-repository'
 
 interface CreatePostRequest {
@@ -9,7 +10,7 @@ interface CreatePostRequest {
 export class CreatePostService {
   constructor(private postsRepository: IPostsRepository) {}
 
-  async execute(body: CreatePostRequest) {
+  async execute(body: CreatePostRequest): Promise<IPost> {
     return this.postsRepository.create(body)
   }
 }

@@ -14,7 +14,21 @@ export const schema = {
     content: z.string(),
   }),
   response: {
-    201: z.string(),
+    201: z.object({
+      id: z.string(),
+      title: z.string(),
+      content: z.string(),
+      author: z.object({
+        id: z.string(),
+        fullName: z.string(),
+        username: z.string(),
+        email: z.string(),
+        createdAt: z.date(),
+        updatedAt: z.date(),
+      }),
+      createdAt: z.date(),
+      updatedAt: z.date(),
+    }),
   },
 }
 
@@ -25,7 +39,7 @@ export async function createPost(req: FastifyRequest, reply: FastifyReply) {
 
   const createPostService = makeCreatePostService()
 
-  await createPostService.execute({ authorId: user?.id, title, content })
+  const post = await createPostService.execute({ authorId: user?.id, title, content })
 
-  return reply.code(201).send()
+  return reply.code(201).send(post)
 }

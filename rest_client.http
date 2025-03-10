@@ -1,7 +1,7 @@
 @BASE_URL=http://localhost:3000
-@USER_ID=
-@USER_TOKEN=
-@POST_ID=
+@USER_ID=6143ea36-01b5-404c-9e8d-39a50531a219
+@USER_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDNlYTM2LTAxYjUtNDA0Yy05ZThkLTM5YTUwNTMxYTIxOSIsImVtYWlsIjoidGVzdDJAZG9lLmNvbSIsInVzZXJuYW1lIjoidGVzdF9kb2UyIiwiZnVsbE5hbWUiOiJUZXN0IERvZSIsImNyZWF0ZWRBdCI6IjIwMjUtMDMtMTBUMjE6MTY6NDEuMjQ5WiIsInVwZGF0ZWRBdCI6IjIwMjUtMDMtMTBUMjE6MTY6NDEuMjQ5WiIsImlhdCI6MTc0MTY0MTQxMSwiZXhwIjoxNzQxNjQyMDExfQ.GpfDr-C7L26-nS_g5cy1Owpql83t2ZiP4QTpjgLgdU4
+@POST_ID=0c63bb7f-7e49-4674-a58c-a2de42199bf8
 
 
 ### Login
@@ -22,6 +22,7 @@ Content-Type: application/json
 {
     "email": "test@doe.com",
     "username": "test_doe",
+    "fullName": "Test Doe",
     "password": "password"
 }
 

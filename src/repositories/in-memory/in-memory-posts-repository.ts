@@ -10,13 +10,15 @@ function includes(source: string, searchString: string): boolean {
 export class InMemoryPostsRepository implements IPostsRepository {
   public posts: IPost[] = []
 
-  async create(data: ICreatePostData): Promise<void> {
+  async create(data: ICreatePostData): Promise<IPost> {
     this.posts.push({
       id: randomUUID(),
       ...data,
       createdAt: new Date(),
       updatedAt: new Date(),
     })
+
+    return Promise.resolve(this.posts[this.posts.length - 1])
   }
 
   async getAll(): Promise<IPost[]> {

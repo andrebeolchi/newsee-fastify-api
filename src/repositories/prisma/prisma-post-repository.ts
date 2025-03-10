@@ -3,17 +3,23 @@ import { IPost } from '~/models/post-inteface'
 import { ICreatePostData, IPostsRepository, IUpdatePostData } from '~/repositories/post-repository'
 
 export class PrismaPostsRepository implements IPostsRepository {
-  async create(data: ICreatePostData): Promise<void> {
-    await db.post.create({ data })
+  async create(data: ICreatePostData): Promise<IPost> {
+    return await db.post.create({
+      data,
+      include: { author: true },
+    })
   }
 
   async getAll(): Promise<IPost[]> {
-    return await db.post.findMany()
+    return await db.post.findMany({
+      include: { author: true },
+    })
   }
 
   async getById(id: string): Promise<IPost | null> {
     return await db.post.findUnique({
       where: { id },
+      include: { author: true },
     })
   }
 
@@ -35,6 +41,7 @@ export class PrismaPostsRepository implements IPostsRepository {
           },
         ],
       },
+      include: { author: true },
     })
   }
 
@@ -43,11 +50,12 @@ export class PrismaPostsRepository implements IPostsRepository {
       where: {
         authorId,
       },
+      include: { author: true },
     })
   }
 
-  async update(data: IUpdatePostData): Promise<void> {
-    await db.post.update({
+  async update(data: IUpdatePostData): Promise<IPost> {
+    return await db.post.update({
       where: {
         id: data.id,
       },
@@ -55,6 +63,7 @@ export class PrismaPostsRepository implements IPostsRepository {
         ...(data.title && { title: data.title }),
         ...(data.content && { content: data.content }),
       },
+      include: { author: true },
     })
   }
 
