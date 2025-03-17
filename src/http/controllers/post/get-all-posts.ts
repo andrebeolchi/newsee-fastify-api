@@ -17,7 +17,14 @@ export const schema = {
     200: z.array(
       z.object({
         id: z.string().uuid(),
-        authorId: z.string().uuid(),
+        author: z.object({
+          id: z.string(),
+          fullName: z.string(),
+          username: z.string(),
+          email: z.string(),
+          createdAt: z.date(),
+          updatedAt: z.date(),
+        }),
         title: z.string(),
         content: z.string(),
         createdAt: z.date(),

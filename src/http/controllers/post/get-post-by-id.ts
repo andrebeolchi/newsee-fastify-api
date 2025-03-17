@@ -16,6 +16,14 @@ export const schema = {
       content: z.string(),
       createdAt: z.date(),
       updatedAt: z.date(),
+      author: z.object({
+        id: z.string(),
+        fullName: z.string(),
+        username: z.string(),
+        email: z.string(),
+        createdAt: z.date(),
+        updatedAt: z.date(),
+      }),
     }),
   },
 }
