@@ -31,5 +31,5 @@ export async function deletePost(req: FastifyRequest, reply: FastifyReply) {
 
   await deletePostService.execute(id)
 
-  return reply.status(200)
+  return reply.status(200).send()
 }
