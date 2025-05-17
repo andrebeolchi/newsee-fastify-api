@@ -4,12 +4,14 @@ export interface ICreatePostData {
   authorId: string
   title: string
   content: string
+  description: string
 }
 
 export interface IUpdatePostData {
   id: string
   title?: string
   content?: string
+  description?: string
 }
 
 export interface IPostsRepository {

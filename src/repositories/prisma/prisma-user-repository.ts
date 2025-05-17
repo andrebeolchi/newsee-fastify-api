@@ -26,6 +26,7 @@ export class PrismaUserRepository implements IUserRepository {
         ...(data.username && { username: data.username }),
         ...(data.email && { email: data.email }),
         ...(data.fullName && { fullName: data.fullName }),
+        ...(data.birthday && { birthday: data.birthday }),
       },
     })
   }

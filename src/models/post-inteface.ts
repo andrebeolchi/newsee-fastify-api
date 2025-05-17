@@ -5,6 +5,7 @@ export interface IPost {
   authorId: string
   title: string
   content: string
+  description: string
 
   author: IUser
 

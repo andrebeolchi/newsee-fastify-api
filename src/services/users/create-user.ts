@@ -4,6 +4,7 @@ import { ResourceAlreadyExistsError } from '../_errors'
 interface ICreateUserRequest {
   username: string
   fullName: string
+  birthday: Date
   email: string
   password: string
 }

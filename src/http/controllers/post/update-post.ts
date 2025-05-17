@@ -15,12 +15,14 @@ export const schema = {
   body: z.object({
     title: z.string(),
     content: z.string(),
+    description: z.string(),
   }),
   response: {
     200: z.object({
       id: z.string(),
       title: z.string(),
       content: z.string(),
+      description: z.string(),
       author: z.object({
         id: z.string(),
         fullName: z.string(),
@@ -37,11 +39,11 @@ export const schema = {
 
 export async function updatePost(req: FastifyRequest, reply: FastifyReply) {
   const { id } = req.params as z.infer<typeof schema.params>
-  const { title, content } = req.body as z.infer<typeof schema.body>
+  const { title, description, content } = req.body as z.infer<typeof schema.body>
 
   const updatePostService = makeUpdatePostService()
 
-  const post = await updatePostService.execute({ id, title, content })
+  const post = await updatePostService.execute({ id, title, description, content })
 
   return reply.status(200).send(post)
 }

@@ -34,6 +34,12 @@ export class PrismaPostsRepository implements IPostsRepository {
             },
           },
           {
+            description: {
+              contains: query,
+              mode: 'insensitive',
+            },
+          },
+          {
             content: {
               contains: query,
               mode: 'insensitive',
@@ -62,6 +68,7 @@ export class PrismaPostsRepository implements IPostsRepository {
       data: {
         ...(data.title && { title: data.title }),
         ...(data.content && { content: data.content }),
+        ...(data.description && { description: data.description }),
       },
       include: { author: true },
     })

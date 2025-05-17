@@ -16,6 +16,12 @@ export const schema = {
   response: {
     200: z.object({
       token: z.string(),
+      username: z.string(),
+      fullName: z.string(),
+      birthday: z.string(),
+      email: z.string(),
+      createdAt: z.string(),
+      updatedAt: z.string(),
     }),
   },
 }
@@ -35,5 +41,5 @@ export async function signIn(req: FastifyRequest, reply: FastifyReply) {
 
   const token = await reply.jwtSign(omit(['password'], user))
 
-  return reply.status(200).send({ token })
+  return reply.status(200).send({ token, ...omit(['password'], user) })
 }

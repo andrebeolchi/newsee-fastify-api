@@ -12,12 +12,14 @@ export const schema = {
   body: z.object({
     title: z.string(),
     content: z.string(),
+    description: z.string().nullish(),
   }),
   response: {
     201: z.object({
       id: z.string(),
       title: z.string(),
       content: z.string(),
+      description: z.string(),
       author: z.object({
         id: z.string(),
         fullName: z.string(),
@@ -33,13 +35,13 @@ export const schema = {
 }
 
 export async function createPost(req: FastifyRequest, reply: FastifyReply) {
-  const { title, content } = req.body as z.infer<typeof schema.body>
+  const { title, description, content } = req.body as z.infer<typeof schema.body>
 
   const user = await req.jwtDecode()
 
   const createPostService = makeCreatePostService()
 
-  const post = await createPostService.execute({ authorId: user?.id, title, content })
+  const post = await createPostService.execute({ authorId: user?.id, title, description, content })
 
   return reply.code(201).send(post)
 }
