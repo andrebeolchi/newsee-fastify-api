@@ -5,13 +5,12 @@ interface UpdatePostRequest {
   id: string
   title?: string
   content?: string
-  description?: string
 }
 
 export class UpdatePostService {
   constructor(private postsRepository: IPostsRepository) {}
 
-  async execute({ id, title, content, description }: UpdatePostRequest): Promise<IPost> {
-    return this.postsRepository.update({ id, title, content, description })
+  async execute({ id, title, content }: UpdatePostRequest): Promise<IPost> {
+    return this.postsRepository.update({ id, title, content })
   }
 }

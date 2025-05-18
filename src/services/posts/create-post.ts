@@ -5,7 +5,6 @@ interface CreatePostRequest {
   authorId: string
   title: string
   content: string
-  description: string
 }
 
 export class CreatePostService {

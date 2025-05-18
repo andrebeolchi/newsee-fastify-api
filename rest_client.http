@@ -1,7 +1,7 @@
 @BASE_URL=http://localhost:3000
-@USER_ID=6143ea36-01b5-404c-9e8d-39a50531a219
-@USER_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDNlYTM2LTAxYjUtNDA0Yy05ZThkLTM5YTUwNTMxYTIxOSIsImVtYWlsIjoidGVzdDJAZG9lLmNvbSIsInVzZXJuYW1lIjoidGVzdF9kb2UyIiwiZnVsbE5hbWUiOiJUZXN0IERvZSIsImNyZWF0ZWRBdCI6IjIwMjUtMDMtMTBUMjE6MTY6NDEuMjQ5WiIsInVwZGF0ZWRBdCI6IjIwMjUtMDMtMTBUMjE6MTY6NDEuMjQ5WiIsImlhdCI6MTc0MTY0MTQxMSwiZXhwIjoxNzQxNjQyMDExfQ.GpfDr-C7L26-nS_g5cy1Owpql83t2ZiP4QTpjgLgdU4
-@POST_ID=0c63bb7f-7e49-4674-a58c-a2de42199bf8
+@USER_ID=7b034b64-fd04-41ac-bc7f-70148dab32e3
+@USER_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdiMDM0YjY0LWZkMDQtNDFhYy1iYzdmLTcwMTQ4ZGFiMzJlMyIsImVtYWlsIjoiYW5kcmVAZ21haWwuY29tIiwidXNlcm5hbWUiOiJhbmRyZWJlb2xjaGkiLCJmdWxsTmFtZSI6IkFuZHLDqSBCZW9sY2hpIiwiYmlydGhkYXkiOiIyMDAxLTA3LTI3VDAwOjAwOjAwLjAwMFoiLCJyb2xlIjoic3R1ZGVudCIsImNyZWF0ZWRBdCI6IjIwMjUtMDUtMThUMTY6MjI6MTUuODI5WiIsInVwZGF0ZWRBdCI6IjIwMjUtMDUtMThUMTY6MjI6MTUuODI5WiIsImlhdCI6MTc0NzU4NTM2NywiZXhwIjoxNzQ3NTg1OTY3fQ.Gcqa3OCQ-R9AhYlrJq9aKRkD-riDJ46vi3jFp8u3R4g
+@POST_ID=
 
 
 ### Login
@@ -10,8 +10,8 @@ POST {{BASE_URL}}/sign-in
 Content-Type: application/json
 
 {
-    "username": "test_doe",
-    "password": "password"
+    "username": "andrebeolchi",
+    "password": "112233"
 }
 
 ### Create a new user
@@ -21,9 +21,10 @@ Content-Type: application/json
 
 {
     "email": "test@doe.com",
-    "username": "test_doe",
+    "username": "test_doe2",
     "fullName": "Test Doe",
-    "password": "password"
+    "password": "password",
+    "birthday": "2001-07-27"
 }
 
 ### 2. Get all posts (without authentication)

@@ -18,7 +18,6 @@ export const schema = {
       id: z.string(),
       title: z.string(),
       content: z.string(),
-      description: z.string(),
       createdAt: z.date(),
       updatedAt: z.date(),
     }),
