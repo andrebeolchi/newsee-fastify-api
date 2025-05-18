@@ -10,6 +10,7 @@ export const schema = {
   body: z.object({
     username: z.string(),
     fullName: z.string(),
+    birthday: z.string().transform(val => new Date(val)),
     email: z.string(),
     password: z.string(),
   }),
@@ -19,6 +20,7 @@ export const schema = {
       username: z.string(),
       fullName: z.string(),
       email: z.string(),
+      birthday: z.date(),
       createdAt: z.date(),
       updatedAt: z.date(),
     }),

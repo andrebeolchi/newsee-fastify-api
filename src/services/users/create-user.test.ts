@@ -10,6 +10,8 @@ describe('Create User Service', () => {
       email: 'john@doe.com',
       username: 'john_doe',
       password: '123456',
+      birthday: new Date('1990-01-01'),
+      fullName: 'John Doe',
     })
 
     expect(inMemoryUsersRepository.users).toHaveLength(1)

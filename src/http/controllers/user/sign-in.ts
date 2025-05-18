@@ -18,10 +18,10 @@ export const schema = {
       token: z.string(),
       username: z.string(),
       fullName: z.string(),
-      birthday: z.string(),
       email: z.string(),
-      createdAt: z.string(),
-      updatedAt: z.string(),
+      birthday: z.date(),
+      createdAt: z.date(),
+      updatedAt: z.date(),
     }),
   },
 }
