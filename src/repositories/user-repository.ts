@@ -1,3 +1,4 @@
+import { Role } from '@prisma/client'
 import { IUser } from '~/models/user-interface'
 
 export interface ICreateUserData {
@@ -6,6 +7,7 @@ export interface ICreateUserData {
   birthday: Date
   email: string
   password: string
+  role: Role
 }
 
 export interface IUpdateUserData {
@@ -26,4 +28,6 @@ export interface IUserRepository {
   update(data: IUpdateUserData): Promise<IUser>
 
   delete(id: string): Promise<void>
+
+  getUsers({ role }: { role?: Role }): Promise<IUser[]>
 }

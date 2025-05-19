@@ -1,3 +1,4 @@
+import { Role } from '@prisma/client'
 import { hash } from 'bcryptjs'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
@@ -10,6 +11,7 @@ export const schema = {
   body: z.object({
     username: z.string(),
     fullName: z.string(),
+    role: z.enum([Role.student, Role.teacher]).default(Role.student),
     birthday: z.string().transform(val => new Date(val)),
     email: z.string(),
     password: z.string(),

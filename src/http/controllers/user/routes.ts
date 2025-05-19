@@ -8,6 +8,7 @@ import { getUserById, schema as getUserByIdSchema } from './get-user-by-id'
 import { updateUser, schema as updateUserSchema } from './update-user'
 import { deleteUser, schema as deleteUserSchema } from './delete-user'
 import { signIn, schema as signInSchema } from './sign-in'
+import { getUsers, schema as getUsersSchema } from './get-users'
 
 export async function userRoutes(app: FastifyInstance) {
   // Create user
@@ -35,6 +36,16 @@ export async function userRoutes(app: FastifyInstance) {
       schema: getUserByIdSchema,
     },
     getUserById
+  )
+
+  // Get users
+  app.withTypeProvider<ZodTypeProvider>().get(
+    '/users',
+    {
+      onRequest: [validateJwt],
+      schema: getUsersSchema,
+    },
+    getUsers
   )
 
   // Update user

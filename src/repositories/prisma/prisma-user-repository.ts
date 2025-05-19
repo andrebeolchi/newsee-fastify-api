@@ -1,3 +1,4 @@
+import { Role } from '@prisma/client'
 import { db } from '~/adapters/db'
 import { IUser } from '~/models/user-interface'
 import { ICreateUserData, IUpdateUserData, IUserRepository } from '~/repositories/user-repository'
@@ -34,6 +35,14 @@ export class PrismaUserRepository implements IUserRepository {
   async delete(id: string): Promise<void> {
     await db.user.delete({
       where: { id },
+    })
+  }
+
+  async getUsers({ role }: { role?: Role }): Promise<IUser[]> {
+    return await db.user.findMany({
+      where: {
+        ...(role && { role }),
+      },
     })
   }
 }

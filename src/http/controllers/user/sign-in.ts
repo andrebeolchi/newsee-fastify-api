@@ -1,3 +1,4 @@
+import { Role } from '@prisma/client'
 import { compare } from 'bcryptjs'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { omit } from 'ramda'
@@ -16,12 +17,14 @@ export const schema = {
   response: {
     200: z.object({
       token: z.string(),
+      id: z.string(),
       username: z.string(),
       fullName: z.string(),
       email: z.string(),
       birthday: z.date(),
       createdAt: z.date(),
       updatedAt: z.date(),
+      role: z.enum([Role.student, Role.teacher]),
     }),
   },
 }

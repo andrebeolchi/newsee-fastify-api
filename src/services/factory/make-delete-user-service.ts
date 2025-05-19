@@ -1,8 +1,8 @@
-import { InMemoryUserRepository } from '~/repositories/in-memory/in-memory-user-repository'
+import { PrismaUserRepository } from '~/repositories/prisma/prisma-user-repository'
 import { DeleteUserService } from '~/services/users/delete-user'
 
 export function makeDeleteUserService() {
-  const userRepository = new InMemoryUserRepository()
+  const userRepository = new PrismaUserRepository()
   const deleteUserService = new DeleteUserService(userRepository)
   return deleteUserService
 }
